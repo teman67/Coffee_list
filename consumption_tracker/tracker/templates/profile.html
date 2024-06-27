@@ -1,0 +1,26 @@
+<!-- tracker/templates/tracker/profile.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h1>{{ profile.user.username }}'s Profile</h1>
+    <!-- Display profile details -->
+    
+    <!-- Link to delete account -->
+    <a href="{% url 'delete_account' %}">Delete My Account</a>
+    
+    <!-- Display consumption details and form for updating consumption -->
+    <p>Ice Creams Consumed: {{ consumption.ice_cream }}</p>
+    <p>Coffees Consumed: {{ consumption.coffee }}</p>
+    <p>Total Price: ${{ consumption.total_price }}</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="ice_cream">Add Ice Cream</button>
+        <button type="submit" name="coffee">Add Coffee</button>
+    </form>
+</body>
+</html>
