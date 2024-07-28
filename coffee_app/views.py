@@ -17,13 +17,13 @@ def register(request):
             return redirect('dashboard')
     else:
         form = UserCreationForm()
-    return render(request, 'myapp/register.html', {'form': form})
+    return render(request, 'coffee_app/register.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
         # handle login
         pass
-    return render(request, 'myapp/login.html')
+    return render(request, 'coffee_app/login.html')
 
 def update_consumption(request):
     if request.method == 'POST':
@@ -33,9 +33,9 @@ def update_consumption(request):
             return redirect('dashboard')
     else:
         form = ConsumptionForm(user=request.user)
-    return render(request, 'myapp/update_consumption.html', {'form': form})
+    return render(request, 'coffee_app/update_consumption.html', {'form': form})
 
 def dashboard(request):
     consumptions = Consumption.objects.filter(user=request.user)
     total_price = sum([c.total_price() for c in consumptions])
-    return render(request, 'myapp/dashboard.html', {'consumptions': consumptions, 'total_price': total_price})
+    return render(request, 'coffee_app/dashboard.html', {'consumptions': consumptions, 'total_price': total_price})
